@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Мемогенератор</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🎉 Мемогенератор</h1>
+
+  <div class="controls">
+    <input type="file" id="upload" accept="image/*" />
+    <input type="text" id="topText" placeholder="Верхній текст" />
+    <input type="text" id="bottomText" placeholder="Нижній текст" />
+    <button id="generate">Створити мем</button>
+  </div>
+
+  <canvas id="canvas" width="500" height="500"></canvas>
+
+  <h2>🕒 Історія мемів</h2>
+  <div id="history"></div>
+
+  <h2>🎰 Рулетка мемів</h2>
+  <div id="roulette"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
