@@ -17,7 +17,7 @@ function sendCodeToEmail(email, code) {
     to_email: email,
     code: code
   }).then(() => {
-    alert("Код надіслано на пошту!")
+    alert("Код надіслано на пошту: " + email)
   }, (error) => {
     alert("Помилка надсилання: " + error.text)
   })
@@ -129,4 +129,4 @@ function saveMeme(dataUrl) {
   const memes = JSON.parse(localStorage.getItem("memes") || "[]")
   const score = rateMeme(topText.value + " " + bottomText.value)
   const username = localStorage.getItem("username") || "Гість"
-  memes.push({ url: dataUrl, date: new Date().toISOString(), score,
+  memes.push({ url: data
