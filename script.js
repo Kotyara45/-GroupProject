@@ -1,0 +1,115 @@
+const upload = document.getElementById("upload")
+const topText = document.getElementById("topText")
+const bottomText = document.getElementById("bottomText")
+const canvas = document.getElementById("canvas")
+const ctx = canvas.getContext("2d")
+const historyDiv = document.getElementById("history")
+const rouletteDiv = document.getElementById("roulette")
+const topMemesDiv = document.getElementById("topMemes")
+const nicknameInput = document.getElementById("nickname")
+
+let image = new Image()
+
+upload.addEventListener("change", (e) => {
+  const file = e.target.files[0]
+  const reader = new FileReader()
+  reader.onload = () => {
+    image.src = reader.result
+    image.onload = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+    }
+  }
+  reader.readAsDataURL(file)
+})
+
+document.getElementById("generate").addEventListener("click", () => {
+  if (!image.src) {
+    alert("Завантаж фото!")
+    return
+  }
+
+  ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+
+  ctx.font = "30px Impact"
+  ctx.fillStyle = "white"
+  ctx.strokeStyle = "black"
+  ctx.lineWidth = 2
+  ctx.textAlign = "center"
+
+  ctx.fillText(topText.value.toUpperCase(), canvas.width / 2, 40)
+  ctx.strokeText(topText.value.toUpperCase(), canvas.width / 2, 40)
+
+  ctx.fillText(bottomText.value.toUpperCase(), canvas.width / 2, canvas.height - 20)
+  ctx.strokeText(bottomText.value.toUpperCase(), canvas.width / 2, canvas.height - 20)
+
+  const memeData = canvas.toDataURL()
+  saveMeme(memeData)
+  showHistory()
+  showTopMemes()
+})
+
+function setUsername() {
+  const nick = nicknameInput.value.trim()
+  if (nick !== "") {
+    localStorage.setItem("username", nick)
+    alert("Нік збережено: " + nick)
+  }
+}
+
+function rateMeme(text) {
+  let score = 0
+  const keywords = ["котик", "пиво", "школа", "баба", "дупа", "пес", "жиза", "прикол", "мем"]
+  keywords.forEach(word => {
+    if (text.toLowerCase().includes(word)) score += 2
+  })
+  score += Math.floor(Math.random() * 5)
+  return Math.min(score, 10)
+}
+
+function saveMeme(dataUrl) {
+  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
+  const score = rateMeme(topText.value + " " + bottomText.value)
+  const username = localStorage.getItem("username") || "Гість"
+  memes.push({ url: dataUrl, date: new Date().toISOString(), score, username })
+  localStorage.setItem("memes", JSON.stringify(memes))
+}
+
+function showHistory() {
+  historyDiv.innerHTML = ""
+  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
+  memes.forEach(meme => {
+    const img = document.createElement("img")
+    img.src = meme.url
+    historyDiv.appendChild(img)
+  })
+}
+
+function startRoulette() {
+  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
+  let index = 0
+  setInterval(() => {
+    rouletteDiv.innerHTML = ""
+    if (memes.length > 0) {
+      const img = document.createElement("img")
+      img.src = memes[index % memes.length].url
+      rouletteDiv.appendChild(img)
+      index++
+    }
+  }, 3000)
+}
+
+function showTopMemes() {
+  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
+  const top3 = memes.sort((a, b) => b.score - a.score).slice(0, 3)
+  topMemesDiv.innerHTML = ""
+  top3.forEach((meme, index) => {
+    const block = document.createElement("div")
+    block.innerHTML = `<p><strong>${index + 1} місце</strong> — ${meme.username} (${meme.score}/10)</p><img src="${meme.url}" />`
+    topMemesDiv.appendChild(block)
+  })
+}
+
+showHistory()
+startRoulette()
+showTopMemes()
