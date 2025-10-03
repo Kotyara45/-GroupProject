@@ -7,8 +7,21 @@ const historyDiv = document.getElementById("history")
 const rouletteDiv = document.getElementById("roulette")
 const topMemesDiv = document.getElementById("topMemes")
 const nicknameInput = document.getElementById("nickname")
+const authSection = document.getElementById("authSection")
+const mainSite = document.getElementById("mainSite")
 
 let image = new Image()
+
+function sendCodeToEmail(email, code) {
+  emailjs.send("service_9q7roco", "template_codeconfirm", {
+    to_email: email,
+    code: code
+  }).then(() => {
+    alert("Код надіслано на пошту!")
+  }, (error) => {
+    alert("Помилка надсилання: " + error.text)
+  })
+}
 
 function startVerification() {
   const nick = document.getElementById("regNick").value.trim()
@@ -23,7 +36,7 @@ function startVerification() {
   const code = Math.floor(100000 + Math.random() * 900000).toString()
   localStorage.setItem("verifyCode", code)
   localStorage.setItem("tempUser", JSON.stringify({ nick, pass, email }))
-  alert("Код підтвердження: " + code)
+  sendCodeToEmail(email, code)
   document.getElementById("verifyBlock").style.display = "block"
 }
 
@@ -45,6 +58,11 @@ function confirmCode() {
     localStorage.removeItem("verifyCode")
     localStorage.removeItem("tempUser")
     document.getElementById("verifyBlock").style.display = "none"
+    authSection.style.display = "none"
+    mainSite.style.display = "block"
+    showHistory()
+    startRoulette()
+    showTopMemes()
   } else {
     alert("Невірний код!")
   }
@@ -111,30 +129,4 @@ function saveMeme(dataUrl) {
   const memes = JSON.parse(localStorage.getItem("memes") || "[]")
   const score = rateMeme(topText.value + " " + bottomText.value)
   const username = localStorage.getItem("username") || "Гість"
-  memes.push({ url: dataUrl, date: new Date().toISOString(), score, username })
-  localStorage.setItem("memes", JSON.stringify(memes))
-}
-
-function showHistory() {
-  historyDiv.innerHTML = ""
-  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
-  memes.forEach(meme => {
-    const img = document.createElement("img")
-    img.src = meme.url
-    historyDiv.appendChild(img)
-  })
-}
-
-function startRoulette() {
-  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
-  let index = 0
-  setInterval(() => {
-    rouletteDiv.innerHTML = ""
-    if (memes.length > 0) {
-      const img = document.createElement("img")
-      img.src = memes[index % memes.length].url
-      rouletteDiv.appendChild(img)
-      index++
-    }
-  }, 3000)
-}
+  memes.push({ url: dataUrl, date: new Date().toISOString(), score,
