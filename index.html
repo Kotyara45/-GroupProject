@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html lang="uk">
+<html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Мемогенератор</title>
+  <title>Мемогенератор з реєстрацією</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>🎉 Мемогенератор</h1>
+  <h1>🔐 Реєстрація</h1>
+  <div class="form">
+    <input type="text" id="regNick" placeholder="Нікнейм" />
+    <input type="password" id="regPass" placeholder="Пароль" />
+    <input type="email" id="regEmail" placeholder="Пошта" />
+    <button onclick="startVerification()">Надіслати код</button>
+  </div>
 
+  <div class="form" id="verifyBlock" style="display:none;">
+    <p>Введи код підтвердження:</p>
+    <input type="text" id="verifyCode" placeholder="Код" />
+    <button onclick="confirmCode()">Підтвердити</button>
+  </div>
+
+  <h1>🎉 Мемогенератор</h1>
   <div class="controls">
     <input type="file" id="upload" accept="image/*" />
     <input type="text" id="topText" placeholder="Верхній текст" />
