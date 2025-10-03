@@ -1,13 +1,10 @@
+
 <html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Мемогенератор</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    emailjs.init("IiBvbf7M-Aal7d0Q5")
-  </script>
 </head>
 <body>
   <div id="authSection">
@@ -16,13 +13,7 @@
       <input type="text" id="regNick" placeholder="Нікнейм" />
       <input type="password" id="regPass" placeholder="Пароль" />
       <input type="email" id="regEmail" placeholder="Пошта" />
-      <button onclick="startVerification()">Надіслати код</button>
-    </div>
-
-    <div class="form" id="verifyBlock" style="display:none;">
-      <p>Введи код підтвердження:</p>
-      <input type="text" id="verifyCode" placeholder="Код" />
-      <button onclick="confirmCode()">Підтвердити</button>
+      <button onclick="registerUser()">Зареєструватись</button>
     </div>
   </div>
 
@@ -51,4 +42,4 @@
 
   <script src="script.js"></script>
 </body>
-</html>
+</html
