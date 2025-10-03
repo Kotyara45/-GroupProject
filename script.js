@@ -12,18 +12,7 @@ const mainSite = document.getElementById("mainSite")
 
 let image = new Image()
 
-function sendCodeToEmail(email, code) {
-  emailjs.send("service_9q7roco", "template_codeconfirm", {
-    to_email: email,
-    code: code
-  }).then(() => {
-    alert("Код надіслано на пошту: " + email)
-  }, (error) => {
-    alert("Помилка надсилання: " + error.text)
-  })
-}
-
-function startVerification() {
+function registerUser() {
   const nick = document.getElementById("regNick").value.trim()
   const pass = document.getElementById("regPass").value.trim()
   const email = document.getElementById("regEmail").value.trim()
@@ -33,39 +22,21 @@ function startVerification() {
     return
   }
 
-  const code = Math.floor(100000 + Math.random() * 900000).toString()
-  localStorage.setItem("verifyCode", code)
-  localStorage.setItem("tempUser", JSON.stringify({ nick, pass, email }))
-  sendCodeToEmail(email, code)
-  document.getElementById("verifyBlock").style.display = "block"
-}
+  const users = JSON.parse(localStorage.getItem("datauser") || "[]")
+  users.push({
+    nick,
+    pass,
+    email,
+    date: new Date().toISOString()
+  })
+  localStorage.setItem("datauser", JSON.stringify(users))
+  alert("Реєстрація успішна!")
 
-function confirmCode() {
-  const inputCode = document.getElementById("verifyCode").value.trim()
-  const realCode = localStorage.getItem("verifyCode")
-  const userData = JSON.parse(localStorage.getItem("tempUser"))
-
-  if (inputCode === realCode) {
-    const users = JSON.parse(localStorage.getItem("datauser") || "[]")
-    users.push({
-      nick: userData.nick,
-      pass: userData.pass,
-      email: userData.email,
-      date: new Date().toISOString()
-    })
-    localStorage.setItem("datauser", JSON.stringify(users))
-    alert("Реєстрація успішна!")
-    localStorage.removeItem("verifyCode")
-    localStorage.removeItem("tempUser")
-    document.getElementById("verifyBlock").style.display = "none"
-    authSection.style.display = "none"
-    mainSite.style.display = "block"
-    showHistory()
-    startRoulette()
-    showTopMemes()
-  } else {
-    alert("Невірний код!")
-  }
+  authSection.style.display = "none"
+  mainSite.style.display = "block"
+  showHistory()
+  startRoulette()
+  showTopMemes()
 }
 
 upload.addEventListener("change", (e) => {
@@ -129,4 +100,41 @@ function saveMeme(dataUrl) {
   const memes = JSON.parse(localStorage.getItem("memes") || "[]")
   const score = rateMeme(topText.value + " " + bottomText.value)
   const username = localStorage.getItem("username") || "Гість"
-  memes.push({ url: data
+  memes.push({ url: dataUrl, date: new Date().toISOString(), score, username })
+  localStorage.setItem("memes", JSON.stringify(memes))
+}
+
+function showHistory() {
+  historyDiv.innerHTML = ""
+  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
+  memes.forEach(meme => {
+    const img = document.createElement("img")
+    img.src = meme.url
+    historyDiv.appendChild(img)
+  })
+}
+
+function startRoulette() {
+  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
+  let index = 0
+  setInterval(() => {
+    rouletteDiv.innerHTML = ""
+    if (memes.length > 0) {
+      const img = document.createElement("img")
+      img.src = memes[index % memes.length].url
+      rouletteDiv.appendChild(img)
+      index++
+    }
+  }, 3000)
+}
+
+function showTopMemes() {
+  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
+  const top3 = memes.sort((a, b) => b.score - a.score).slice(0, 3)
+  topMemesDiv.innerHTML = ""
+  top3.forEach((meme, index) => {
+    const block = document.createElement("div")
+    block.innerHTML = `<p><strong>${index + 1} місце</strong> — ${meme.username} (${meme.score}/10)</p><img src="${meme.url}" />`
+    topMemesDiv.appendChild(block)
+  })
+}
