@@ -10,6 +10,46 @@ const nicknameInput = document.getElementById("nickname")
 
 let image = new Image()
 
+function startVerification() {
+  const nick = document.getElementById("regNick").value.trim()
+  const pass = document.getElementById("regPass").value.trim()
+  const email = document.getElementById("regEmail").value.trim()
+
+  if (!nick || !pass || !email) {
+    alert("Заповни всі поля!")
+    return
+  }
+
+  const code = Math.floor(100000 + Math.random() * 900000).toString()
+  localStorage.setItem("verifyCode", code)
+  localStorage.setItem("tempUser", JSON.stringify({ nick, pass, email }))
+  alert("Код підтвердження: " + code)
+  document.getElementById("verifyBlock").style.display = "block"
+}
+
+function confirmCode() {
+  const inputCode = document.getElementById("verifyCode").value.trim()
+  const realCode = localStorage.getItem("verifyCode")
+  const userData = JSON.parse(localStorage.getItem("tempUser"))
+
+  if (inputCode === realCode) {
+    const users = JSON.parse(localStorage.getItem("datauser") || "[]")
+    users.push({
+      nick: userData.nick,
+      pass: userData.pass,
+      email: userData.email,
+      date: new Date().toISOString()
+    })
+    localStorage.setItem("datauser", JSON.stringify(users))
+    alert("Реєстрація успішна!")
+    localStorage.removeItem("verifyCode")
+    localStorage.removeItem("tempUser")
+    document.getElementById("verifyBlock").style.display = "none"
+  } else {
+    alert("Невірний код!")
+  }
+}
+
 upload.addEventListener("change", (e) => {
   const file = e.target.files[0]
   const reader = new FileReader()
@@ -98,18 +138,3 @@ function startRoulette() {
     }
   }, 3000)
 }
-
-function showTopMemes() {
-  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
-  const top3 = memes.sort((a, b) => b.score - a.score).slice(0, 3)
-  topMemesDiv.innerHTML = ""
-  top3.forEach((meme, index) => {
-    const block = document.createElement("div")
-    block.innerHTML = `<p><strong>${index + 1} місце</strong> — ${meme.username} (${meme.score}/10)</p><img src="${meme.url}" />`
-    topMemesDiv.appendChild(block)
-  })
-}
-
-showHistory()
-startRoulette()
-showTopMemes()
