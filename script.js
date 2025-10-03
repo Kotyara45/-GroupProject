@@ -9,6 +9,7 @@ const topMemesDiv = document.getElementById("topMemes")
 const nicknameInput = document.getElementById("nickname")
 const authSection = document.getElementById("authSection")
 const mainSite = document.getElementById("mainSite")
+const registerBtn = document.getElementById("registerBtn")
 
 let image = new Image()
 
@@ -30,10 +31,11 @@ function registerUser() {
     date: new Date().toISOString()
   })
   localStorage.setItem("datauser", JSON.stringify(users))
-  alert("Реєстрація успішна!")
 
+  registerBtn.style.display = "none"
   authSection.style.display = "none"
   mainSite.style.display = "block"
+
   showHistory()
   startRoulette()
   showTopMemes()
