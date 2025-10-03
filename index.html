@@ -18,21 +18,16 @@
 
   <div id="mainSite" style="display:none;">
     <h1>🎉 Мемогенератор</h1>
-    <div class="layout">
-      <div class="controls">
-        <input type="file" id="upload" accept="image/*" />
-        <input type="text" id="topText" placeholder="Верхній текст" />
-        <input type="text" id="bottomText" placeholder="Нижній текст" />
-        <input type="text" id="nickname" placeholder="Введи нікнейм" />
-        <button onclick="setUsername()">Зберегти нік</button>
-        <button id="generate">Створити мем</button>
-        <button id="downloadMeme">Зберегти мем</button>
-      </div>
-
-      <div class="canvas-container">
-        <canvas id="canvas" width="600" height="600"></canvas>
-      </div>
+    <div class="controls">
+      <input type="file" id="upload" accept="image/*" />
+      <input type="text" id="topText" placeholder="Верхній текст" />
+      <input type="text" id="bottomText" placeholder="Нижній текст" />
+      <input type="text" id="nickname" placeholder="Введи нікнейм" />
+      <button onclick="setUsername()">Зберегти нік</button>
+      <button id="generate">Створити мем</button>
     </div>
+
+    <canvas id="canvas" width="500" height="500"></canvas>
 
     <h2>🕒 Історія мемів</h2>
     <div id="history"></div>
@@ -42,11 +37,6 @@
 
     <h2>🏆 Топ мемів тижня</h2>
     <div id="topMemes"></div>
-  </div>
-
-  <div id="modal" class="modal">
-    <span class="close" onclick="closeModal()">×</span>
-    <img id="modalImg" />
   </div>
 
   <script src="script.js"></script>
