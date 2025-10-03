@@ -13,6 +13,8 @@
     <input type="file" id="upload" accept="image/*" />
     <input type="text" id="topText" placeholder="Верхній текст" />
     <input type="text" id="bottomText" placeholder="Нижній текст" />
+    <input type="text" id="nickname" placeholder="Введи нікнейм" />
+    <button onclick="setUsername()">Зберегти нік</button>
     <button id="generate">Створити мем</button>
   </div>
 
@@ -23,6 +25,9 @@
 
   <h2>🎰 Рулетка мемів</h2>
   <div id="roulette"></div>
+
+  <h2>🏆 Топ мемів тижня</h2>
+  <div id="topMemes"></div>
 
   <script src="script.js"></script>
 </body>
