@@ -15,20 +15,6 @@ h1, h2 {
   text-align: left;
 }
 
-.layout {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 40px;
-  margin: 20px auto;
-  max-width: 1000px;
-}
-
-.canvas-container {
-  flex: 1;
-  text-align: right;
-}
-
 canvas {
   border: 2px solid #333;
   cursor: pointer;
@@ -47,53 +33,10 @@ input[type="text"], input[type="password"], input[type="email"], input[type="fil
   font-size: 16px;
 }
 
-#history img, #roulette img, #topMemes img {
+#history img {
   width: 150px;
   margin: 5px;
   border: 1px solid #aaa;
   border-radius: 4px;
   cursor: pointer;
-}
-
-#topMemes div {
-  margin-bottom: 15px;
-}
-
-/* Modal styles */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 0.3s ease;
-}
-
-.modal img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-  animation: zoomIn 0.3s ease;
-}
-
-.modal .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
-  color: white;
-  cursor: pointer;
-}
-
-@keyframes zoomIn {
-  from { transform: scale(0.5); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
 }
