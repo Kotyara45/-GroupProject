@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let image = new Image()
 
-  // --- Функція реєстрації ---
   window.registerUser = function() {
     const nick = document.getElementById("regNick").value.trim()
     const pass = document.getElementById("regPass").value.trim()
@@ -34,12 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     localStorage.setItem("datauser", JSON.stringify(users))
 
-    // Переходимо до головного сайту
     authSection.style.display = "none"
     mainSite.style.display = "block"
-  }
 
-  // --- Завантаження картинки ---
   upload.addEventListener("change", (e) => {
     const file = e.target.files[0]
     const reader = new FileReader()
