@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     authSection.style.display = "none"
     mainSite.style.display = "block"
-
+  }
   upload.addEventListener("change", (e) => {
     const file = e.target.files[0]
     const reader = new FileReader()
@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     reader.readAsDataURL(file)
   })
 
-  // --- Генерація мема ---
   document.getElementById("generate").addEventListener("click", () => {
     if (!image.src) {
       alert("Завантаж фото!")
