@@ -1,4 +1,3 @@
-
 const upload = document.getElementById("upload")
 const topText = document.getElementById("topText")
 const bottomText = document.getElementById("bottomText")
@@ -81,6 +80,24 @@ document.getElementById("generate").addEventListener("click", () => {
   showTopMemes()
 })
 
+document.getElementById("downloadMeme").addEventListener("click", () => {
+  const link = document.createElement("a")
+  link.download = "meme.png"
+  link.href = canvas.toDataURL("image/png")
+  link.click()
+})
+
+canvas.addEventListener("click", () => {
+  const modal = document.getElementById("modal")
+  const modalImg = document.getElementById("modalImg")
+  modalImg.src = canvas.toDataURL()
+  modal.style.display = "flex"
+})
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none"
+}
+
 function setUsername() {
   const nick = nicknameInput.value.trim()
   if (nick !== "") {
@@ -91,53 +108,4 @@ function setUsername() {
 
 function rateMeme(text) {
   let score = 0
-  const keywords = ["котик", "пиво", "школа", "баба", "дупа", "пес", "жиза", "прикол", "мем"]
-  keywords.forEach(word => {
-    if (text.toLowerCase().includes(word)) score += 2
-  })
-  score += Math.floor(Math.random() * 5)
-  return Math.min(score, 10)
-}
-
-function saveMeme(dataUrl) {
-  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
-  const score = rateMeme(topText.value + " " + bottomText.value)
-  const username = localStorage.getItem("username") || "Гість"
-  memes.push({ url: dataUrl, date: new Date().toISOString(), score, username })
-  localStorage.setItem("memes", JSON.stringify(memes))
-}
-
-function showHistory() {
-  historyDiv.innerHTML = ""
-  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
-  memes.forEach(meme => {
-    const img = document.createElement("img")
-    img.src = meme.url
-    historyDiv.appendChild(img)
-  })
-}
-
-function startRoulette() {
-  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
-  let index = 0
-  setInterval(() => {
-    rouletteDiv.innerHTML = ""
-    if (memes.length > 0) {
-      const img = document.createElement("img")
-      img.src = memes[index % memes.length].url
-      rouletteDiv.appendChild(img)
-      index++
-    }
-  }, 3000)
-}
-
-function showTopMemes() {
-  const memes = JSON.parse(localStorage.getItem("memes") || "[]")
-  const top3 = memes.sort((a, b) => b.score - a.score).slice(0, 3)
-  topMemesDiv.innerHTML = ""
-  top3.forEach((meme, index) => {
-    const block = document.createElement("div")
-    block.innerHTML = `<p><strong>${index + 1} місце</strong> — ${meme.username} (${meme.score}/10)</p><img src="${meme.url}" />`
-    topMemesDiv.appendChild(block)
-  })
-}
+  const keywords = ["котик", "пиво",]
