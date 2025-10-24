@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  font-family: 'Roboto Flex' , sans-serif;
+  background: url("assets/background/background.png") ;
   text-align: center;
 
   padding: 50px;
@@ -16,10 +17,6 @@ h1, h2 {
   max-width: 300px;
   min-width: 100px;
   text-align: left;
-}
-
-#registerBtn {
-  width: 100%;
 }
 
 canvas {
@@ -38,6 +35,31 @@ input[type="text"], input[type="password"], input[type="email"], input[type="fil
   margin: 10px 0;
   padding: 10px;
   font-size: 16px;
+  box-sizing: border-box;
+  border-radius: 100px;
+  border: none;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 15px 25px;
+  color: white;
+  font-weight: lighter;
+}
+
+::placeholder {
+  font-weight: lighter;
+  color: rgb(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+button {
+  background-color: #E5C95F;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 15px;
+  border: solid rgba(0, 0, 0, 0.7) 2px;
 }
 
 #history img {
