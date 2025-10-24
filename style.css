@@ -9,23 +9,42 @@ h1, h2 {
   margin-top: 30px;
 }
 
-.form, .controls {
-  margin: 20px auto;
-  max-width: 300px;
-  text-align: left;
+#mainSite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-canvas {
+.controls, #canvas {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.controls {
+  width: 220px;
+  text-align: left;
+  margin-right: 40px;
+}
+
+#canvas {
   border: 2px solid #333;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-canvas:hover {
+#canvas:hover {
   transform: scale(1.02);
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="file"], button {
+.controls + canvas {
+  display: inline-block;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+button {
   display: block;
   width: 100%;
   margin: 10px 0;
@@ -39,4 +58,10 @@ input[type="text"], input[type="password"], input[type="email"], input[type="fil
   border: 1px solid #aaa;
   border-radius: 4px;
   cursor: pointer;
+}
+
+#mainSite > .controls, 
+#mainSite > canvas {
+  display: inline-block;
+  vertical-align: top;
 }
