@@ -1,18 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  font-family: 'Roboto Flex' , sans-serif;
+  background: url("assets/background/background.png") no-repeat center fixed;
+  background-size: cover;
   text-align: center;
-  padding: 20px;
+
+  padding: 50px;
+  display: block;
 }
 
 h1, h2 {
   margin-top: 30px;
 }
 
-#mainSite {
+#mainSite, #authSection {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#registerBtn {
+  border-style: none;
+  flex-shrink: 0;
+  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 4rem;
+  padding: 0 1.6rem;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+
+@media (min-width: 768px) {
+  #registerBtn {
+    padding: 0 2.6rem;
+  }
 }
 
 .controls, #canvas {
@@ -23,7 +49,8 @@ h1, h2 {
 .controls {
   width: 220px;
   text-align: left;
-  margin-right: 40px;
+  margin: 20px;
+  align-items: center;
 }
 
 #canvas {
@@ -50,8 +77,69 @@ button {
   margin: 10px 0;
   padding: 10px;
   font-size: 16px;
+  box-sizing: border-box;
+  border-radius: 100px;
+  border: none;
 }
 
+input[type="text"], input[type="password"], input[type="email"] {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 15px 25px;
+  color: white;
+  font-weight: lighter;
+}
+
+::placeholder {
+  font-weight: lighter;
+  color: rgb(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+button {
+  background-image: linear-gradient(92.88deg, #445fc1 9.16%, #523ed3 43.89%, #683ce3 64.72%);
+  color: #FFFFFF;
+  box-shadow: rgba(80, 63, 205, 0.5) 0 8px 15px;
+  text-align: center;
+  font-weight: bold;
+  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  padding: 15px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+input.upload{
+  display: none;
+}
+.upload-label {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  background-image: linear-gradient(92.88deg, #445fc1 9.16%, #523ed3 43.89%, #683ce3 64.72%);
+  border-radius: 8px;
+  width: 30px;
+  height: 30px;
+  transition: all .5s;
+}
+.upload-label img {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+}
+.upload-label:hover, button:hover {
+  background-image: linear-gradient(92.88deg, #526dd1 9.16%, #5e49e6 43.89%, #7145e9 64.72%);
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: .3s;
+}
+.upload-label:active, button:active {
+  color: rgba(0, 0, 0, 0.7);
+  background-image: linear-gradient(92.88deg, #ebca55 7.16%, #E5C95F 43.89%, #fce58f 94.72%);
+  box-shadow: rgba(80, 63, 205, 0.5) 0 8px 15px;
+  transform: translateY(3px);
+  transition-duration: .1s;
+}
+.upload-label:active img {
+  filter: brightness(0);
+}
 #history img {
   width: 150px;
   margin: 5px;
