@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 body {
   font-family: 'Roboto Flex' , sans-serif;
-  background: url("assets/background/background.png") ;
+  background: url("assets/background/background.png") no-repeat center fixed;
+  background-size: cover;
   text-align: center;
 
   padding: 50px;
@@ -12,24 +13,83 @@ h1, h2 {
   margin-top: 30px;
 }
 
-.form, .controls {
-  margin: 20px auto;
-  max-width: 300px;
-  min-width: 100px;
-  text-align: left;
+#mainSite, #authSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-canvas {
+#registerBtn {
+  background-image: linear-gradient(92.88deg, #445fc1 9.16%, #523ed3 43.89%, #683ce3 64.72%);
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 4rem;
+  padding: 0 1.6rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#registerBtn:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: .1s;
+}
+
+#registerBtn:active {
+  color: rgba(0, 0, 0, 0.7);
+  background-image: linear-gradient(92.88deg, #ebca55 7.16%, #E5C95F 43.89%, #fce58f 94.72%);
+  box-shadow: rgba(80, 63, 205, 0.5) 0 8px 15px;
+  transform: translateY(3px);
+  transition-duration: .1s;
+}
+
+@media (min-width: 768px) {
+  #registerBtn {
+    padding: 0 2.6rem;
+  }
+}
+
+.controls, #canvas {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.controls {
+  width: 220px;
+  text-align: left;
+  margin: 20px;
+  align-items: center;
+}
+
+#canvas {
   border: 2px solid #333;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-canvas:hover {
+#canvas:hover {
   transform: scale(1.02);
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="file"], button {
+.controls + canvas {
+  display: inline-block;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+button {
   display: block;
   width: 100%;
   margin: 10px 0;
@@ -54,12 +114,26 @@ input[type="text"], input[type="password"], input[type="email"] {
 }
 
 button {
-  background-color: #E5C95F;
-  color: white;
+  color: rgba(0, 0, 0, 0.7);
+  background-image: linear-gradient(92.88deg, #ebca55 7.16%, #E5C95F 43.89%, #fce58f 94.72%);
+  box-shadow: rgba(80, 63, 205, 0.5) 0 8px 15px;
   text-align: center;
   font-weight: bold;
+  font-family: "Inter UI","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
   padding: 15px;
   border: solid rgba(0, 0, 0, 0.7) 2px;
+  cursor: pointer;
+}
+
+input.upload{
+  display: none;
+}
+.upload-label {
+  cursor: pointer;
+}
+.upload-label img {
+  width: 20px;
+  vertical-align: middle;
 }
 
 #history img {
@@ -68,4 +142,10 @@ button {
   border: 1px solid #aaa;
   border-radius: 4px;
   cursor: pointer;
+}
+
+#mainSite > .controls, 
+#mainSite > canvas {
+  display: inline-block;
+  vertical-align: top;
 }
