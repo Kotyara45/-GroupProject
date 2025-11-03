@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Мемогенератор</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="normalize.css" />
+  <link rel="stylesheet" href="normalize.css ">
 </head>
 <body>
   <div id="authSection">
@@ -14,16 +14,24 @@
       <input type="text" id="regNick" placeholder="Нікнейм" />
       <input type="password" id="regPass" placeholder="Пароль" />
       <input type="email" id="regEmail" placeholder="Пошта" />
-      <button id="registerBtn" onclick="registerUser()">ЗАРЕЄСТРУВАТИСЬ</button>
+      <button id="registerBtn" onclick="registerUser()">Зареєструватись</button>
     </div>
   </div>
 
-
   <div id="mainSite" style="display:none;">
+   <nav class="navbar">
+      <div class="container">
+        <ul class="nav-links">
+          <li><a href="index.html">Головна</a></li>
+          <li><a href="about.html">Про проект</a></li>
+          
+        </ul>
+      </div>
+    </nav>
     <h1>🎉 Мемогенератор</h1>
     <div class="controls">
       <label for="upload" class="upload-label"><img src="assets/interface/fileattachment.png"></label>
-      <input type="file" id="upload" class="upload" accept="image/*" />
+      <input type="file" id="upload" class ="upload" accept="image/*" />
       <input type="text" id="topText" placeholder="Верхній текст" />
       <input type="text" id="bottomText" placeholder="Нижній текст" />
       <input type="text" id="nickname" placeholder="Введи нікнейм" />

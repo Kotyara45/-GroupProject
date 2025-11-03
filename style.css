@@ -95,7 +95,7 @@ input[type="text"], input[type="password"], input[type="email"] {
   font-style: italic;
 }
 
-button {
+button, nav.navbar .nav-links li a {
   background-image: linear-gradient(92.88deg, #445fc1 9.16%, #523ed3 43.89%, #683ce3 64.72%);
   color: #FFFFFF;
   box-shadow: rgba(80, 63, 205, 0.5) 0 8px 15px;
@@ -105,6 +105,7 @@ button {
   padding: 15px;
   cursor: pointer;
   border-radius: 8px;
+  text-decoration: none;
 }
 
 input.upload{
@@ -125,12 +126,12 @@ input.upload{
   height: 20px;
   margin: 5px;
 }
-.upload-label:hover, button:hover {
+.upload-label:hover, button:hover,nav.navbar .nav-links li a:hover { 
   background-image: linear-gradient(92.88deg, #526dd1 9.16%, #5e49e6 43.89%, #7145e9 64.72%);
   box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
   transition-duration: .3s;
 }
-.upload-label:active, button:active {
+.upload-label:active, button:active, nav.navbar .nav-links li a:active {
   color: rgba(0, 0, 0, 0.7);
   background-image: linear-gradient(92.88deg, #ebca55 7.16%, #E5C95F 43.89%, #fce58f 94.72%);
   box-shadow: rgba(80, 63, 205, 0.5) 0 8px 15px;
@@ -153,3 +154,26 @@ input.upload{
   display: inline-block;
   vertical-align: top;
 }
+
+nav.navbar {
+  width: 100%;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+nav.navbar .container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+nav.navbar .nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+}
+
