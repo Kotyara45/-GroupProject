@@ -1,0 +1,123 @@
+/* === ABOUT PAGE STYLES === */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,300;500;700&display=swap');
+
+body {
+  font-family: 'Roboto Flex', sans-serif;
+  background: url("assets/background/background.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+/* NAVBAR */
+.navbar {
+    
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+.navbar .nav-links {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 15px 0;
+}
+
+.navbar .nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+  background: linear-gradient(92.88deg, #526dd1 9.16%, #5e49e6 43.89%, #7145e9 64.72%);
+  box-shadow: 0 0 20px rgba(113, 69, 233, 0.6);
+}
+
+/* CONTAINER */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 50px 20px;
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+/* HEADERS */
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(120, 90, 255, 0.6);
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-top: 40px;
+  text-decoration: underline;
+  text-decoration-color: #6b46e3;
+}
+
+p {
+  line-height: 1.6;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+/* TEAM SECTION */
+.team-member {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.team-member h3 {
+  color: #d5c9ff;
+  margin-bottom: 5px;
+}
+
+/* CONTACTS */
+section:last-of-type {
+  margin-top: 50px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* FADE-IN ANIMATION */
+section, h1 {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible, h1.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .container {
+    padding: 30px 15px;
+  }
+  h1 {
+    font-size: 2em;
+  }
+  .navbar .nav-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
