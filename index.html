@@ -3,11 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Мемогенератор</title>
-  <link rel="stylesheet" href="normalize.css ">
+
+  <title>Мемогенератор — створюй круті меми онлайн!</title>
+
+  <meta name="description" content="Мемогенератор онлайн — завантажуй фото, додавай текст і створюй меми за кілька секунд. Історія мемів, рулетка мемів, топ мемів тижня.">
+
+  <meta name="keywords" content="мемогенератор, меми онлайн, створити мем, меми українською, мем-редактор, генератор мемів, меми 2025">
+
+  <link rel="canonical" href="https://kotyara45.github.io/-GroupProject/">
+
+  <meta property="og:title" content="Мемогенератор — створюй меми онлайн!">
+  <meta property="og:description" content="Створи свій мем за кілька секунд! Завантаж фото, додай текст і поділися.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/preview.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Мемогенератор",
+    "url": "https://kotyara45.github.io/-GroupProject/",
+    "applicationCategory": "PhotoEditor",
+    "operatingSystem": "Web",
+    "description": "Онлайн-редактор мемів українською мовою."
+  }
+  </script>
+
+  <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- AUTH SECTION -->
   <div id="authSection">
     <h1>🔐 Реєстрація</h1>
     <div class="form">
@@ -19,25 +45,36 @@
   </div>
 
   <div id="mainSite" style="display:none;">
-   <nav class="navbar">
+
+    <nav class="navbar" style="position:fixed; top:0; left:0; width:100%; z-index:999; backdrop-filter:blur(8px);">
       <div class="container">
         <ul class="nav-links">
           <li><a href="index.html">Головна</a></li>
           <li><a href="about.html">Про проект</a></li>
-          
+          <li><a href="#article">Стаття</a></li>
+          <li><a href="#video">Відео</a></li>
         </ul>
       </div>
     </nav>
+
+    <br><br><br>
+
     <h1>🎉 Мемогенератор</h1>
+
     <div class="controls">
-      <label for="upload" class="upload-label"><img src="assets/interface/fileattachment.png"></label>
-      <input type="file" id="upload" class ="upload" accept="image/*" />
+      <label for="upload" class="upload-label">
+        <img src="assets/interface/fileattachment.png">
+      </label>
+      <input type="file" id="upload" class="upload" accept="image/*" />
+
       <input type="text" id="topText" placeholder="Верхній текст" />
       <input type="text" id="bottomText" placeholder="Нижній текст" />
       <input type="text" id="nickname" placeholder="Введи нікнейм" />
+
       <button onclick="setUsername()">Зберегти нік</button>
       <button id="generate">Створити мем</button>
     </div>
+
 
     <canvas id="canvas" width="500" height="500"></canvas>
 
@@ -49,6 +86,18 @@
 
     <h2>🏆 Топ мемів тижня</h2>
     <div id="topMemes"></div>
+
+    <section id="article" style="max-width:900px; margin:auto; padding:40px; text-align:left;">
+      <h2>📝 Як створити ідеальний мем? Повний гайд</h2>
+      <p>(Тут ти зможеш написати статтю — вона збільшить час перебування на сайті, що дуже добре для SEO)</p>
+    </section>
+
+    <section id="video" style="margin:40px 0;">
+      <h2>🎥 Відео-інструкція</h2>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/VIDEO_ID" 
+              title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </section>
+
   </div>
 
   <script src="script.js"></script>
